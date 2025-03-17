@@ -7,12 +7,14 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: fit-content;
     height: fit-content;
+    background-color: #dfdfdf;
+    padding: 25px;
 }
 
 .quiddler-card {
     position: relative;
-    padding-bottom: var(--card-offset);
-    padding-right: var(--card-offset);
+    padding-bottom: calc(var(--card-offset) * 2);
+    padding-right: calc(var(--card-offset) * 2);
 }
 
 .visible-card {
