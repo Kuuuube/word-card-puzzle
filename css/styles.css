@@ -20,3 +20,9 @@
     top: var(--card-offset);
     left: var(--card-offset);
 }
+
+.visible-card,
+.hidden-card {
+    user-select: none;
+}
+

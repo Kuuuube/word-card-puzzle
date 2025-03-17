@@ -47,6 +47,7 @@ function populate_cards() {
         let hidden_card = document.createElement("div");
         hidden_card.classList.add("hidden-card");
         let hidden_card_image = document.createElement("img");
+        hidden_card_image.draggable = false;
         hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png"
         hidden_card.appendChild(hidden_card_image)
         quiddler_card.appendChild(hidden_card);
@@ -55,6 +56,7 @@ function populate_cards() {
         visible_card.classList.add("visible-card");
         let visible_card_image = document.createElement("img");
         visible_card_image.src = ASSETS_BASE_PATH + get_letter() + ".png"
+        visible_card_image.draggable = false;
         visible_card.appendChild(visible_card_image)
         quiddler_card.appendChild(visible_card);
 
