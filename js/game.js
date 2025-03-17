@@ -5,6 +5,8 @@ const ASSETS_BASE_PATH = "./assets/";
 const POSSIBLE_LETTERS = ["a","b","cl","c","d","e","er","f","g","h","in","i","j","k","l","m","n","o","p","q","qu","r","s","th","t","u","v","w","x","y","z"];
 
 const SELECTED_CARD_CLASS = "selected-card";
+const VISIBLE_CARD_CLASS = "visible-card";
+const HIDDEN_CARD_CLASS = "hidden-card";
 
 let selected_cards = [];
 
@@ -51,7 +53,7 @@ function populate_cards() {
         quiddler_card.classList.add("quiddler-card");
 
         let hidden_card = document.createElement("div");
-        hidden_card.classList.add("hidden-card");
+        hidden_card.classList.add(HIDDEN_CARD_CLASS);
         let hidden_card_image = document.createElement("img");
         hidden_card_image.draggable = false;
         hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png"
@@ -59,7 +61,7 @@ function populate_cards() {
         quiddler_card.appendChild(hidden_card);
 
         let visible_card = document.createElement("div");
-        visible_card.classList.add("visible-card");
+        visible_card.classList.add(VISIBLE_CARD_CLASS);
         let visible_card_image = document.createElement("img");
         let card_letter = get_letter();
         visible_card_image.src = ASSETS_BASE_PATH + card_letter + ".png"
