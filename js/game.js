@@ -89,17 +89,28 @@ function deselect_all_cards() {
     for (const element of document.querySelectorAll("." + SELECTED_CARD_CLASS)) {
         element.classList.remove(SELECTED_CARD_CLASS);
     }
+    selected_cards = [];
+}
+
+function delete_cards(indexes) {
+    for (const element of document.querySelectorAll("." + VISIBLE_CARD_CLASS)) {
+        if (indexes.includes(Number(element.dataset["index"]))) {
+            element.remove();
+        }
+    }
 }
 
 function submit_cards() {
     let word = "";
+    let card_indexes = [];
     for (const element of selected_cards) {
         if (element !== null) {
             word += element.letter;
+            card_indexes.push(element.index);
         }
     }
     if (DICTIONARY.includes(word)) {
-        console.log("found");
+        delete_cards(card_indexes);
     }
     deselect_all_cards();
 }
