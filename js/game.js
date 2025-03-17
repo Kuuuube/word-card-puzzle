@@ -22,7 +22,7 @@ function hashCode(s) {
 
 const MILLISECONDS_PER_DAY = 86400000;
 const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
-const seed = hashCode(epoch_day);
+const seed = hashCode(epoch_day.toString());
 const seededRand = mulberry32(epoch_day)
 
 function get_letter() {
