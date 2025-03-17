@@ -55,6 +55,8 @@ function populate_cards() {
         let hidden_card = document.createElement("div");
         hidden_card.classList.add(HIDDEN_CARD_CLASS);
         let hidden_card_image = document.createElement("img");
+        hidden_card.dataset.index = i;
+        hidden_card.dataset.letter = get_letter();
         hidden_card_image.draggable = false;
         hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png"
         hidden_card.appendChild(hidden_card_image)
@@ -63,10 +65,10 @@ function populate_cards() {
         let visible_card = document.createElement("div");
         visible_card.classList.add(VISIBLE_CARD_CLASS);
         let visible_card_image = document.createElement("img");
-        let card_letter = get_letter();
-        visible_card_image.src = ASSETS_BASE_PATH + card_letter + ".png"
+        let visible_card_letter = get_letter();
+        visible_card_image.src = ASSETS_BASE_PATH + visible_card_letter + ".png"
         visible_card.dataset.index = i;
-        visible_card.dataset.letter = card_letter;
+        visible_card.dataset.letter = visible_card_letter;
         visible_card_image.draggable = false;
         visible_card.appendChild(visible_card_image)
         visible_card.addEventListener("click", (e) => {
@@ -93,9 +95,17 @@ function deselect_all_cards() {
 }
 
 function delete_cards(indexes) {
-    for (const element of document.querySelectorAll("." + VISIBLE_CARD_CLASS)) {
-        if (indexes.includes(Number(element.dataset["index"]))) {
+    let visible_cards = Array.from(document.querySelectorAll("." + VISIBLE_CARD_CLASS));
+    let hidden_cards = Array.from(document.querySelectorAll("." + HIDDEN_CARD_CLASS));
+    console.log(hidden_cards);
+    for (const element of visible_cards) {
+        let visible_card_index = Number(element.dataset["index"]);
+        if (indexes.includes(visible_card_index)) {
             element.remove();
+            let hidden_card = hidden_cards[hidden_cards.findIndex((x) => Number(x.dataset["index"]) === visible_card_index)];
+            hidden_card.classList.add(VISIBLE_CARD_CLASS);
+            hidden_card.classList.remove(HIDDEN_CARD_CLASS);
+            hidden_card.querySelector("img").src = ASSETS_BASE_PATH + hidden_card.dataset["letter"] + ".png";
         }
     }
 }
