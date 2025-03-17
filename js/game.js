@@ -12,7 +12,7 @@ function mulberry32(a) {
 }
 
 // Basic insecure hash matching Java's String.hashCode()
-function hashCode(s) {
+function hash_code(s) {
     let h;
     for(let i = 0; i < s.length; i++) {
         h = Math.imul(31, h) + s.charCodeAt(i) | 0;
@@ -20,10 +20,18 @@ function hashCode(s) {
     return h;
 }
 
-const MILLISECONDS_PER_DAY = 86400000;
-const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
-const seed = hashCode(epoch_day.toString());
-const seededRand = mulberry32(epoch_day)
+function get_seed() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const url_seed = urlParams.get("seed");
+    if (url_seed) {
+        return hash_code(url_seed);
+    }
+    const MILLISECONDS_PER_DAY = 86400000;
+    const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
+    return hash_code(epoch_day.toString());
+}
+
+const seededRand = mulberry32(get_seed())
 
 function get_letter() {
     let random_index = Math.floor(seededRand() * POSSIBLE_LETTERS.length);
