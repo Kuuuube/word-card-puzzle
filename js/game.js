@@ -1,6 +1,10 @@
+import {DICTIONARY} from "./dictionary.js";
+
 const CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
 const POSSIBLE_LETTERS = ["a","b","cl","c","d","e","er","f","g","h","in","i","j","k","l","m","n","o","p","q","qu","r","s","th","t","u","v","w","x","y","z"];
+
+const SELECTED_CARD_CLASS = "selected-card";
 
 let selected_cards = [];
 
@@ -64,14 +68,14 @@ function populate_cards() {
         visible_card_image.draggable = false;
         visible_card.appendChild(visible_card_image)
         visible_card.addEventListener("click", (e) => {
-            let selected = e.target.classList.contains("selected-card");
+            let selected = e.target.classList.contains(SELECTED_CARD_CLASS);
             if (selected) {
                 let index = selected_cards.findIndex((x) => x.index === Number(e.target.parentElement.dataset["index"]));
                 selected_cards.splice(index, 1);
             } else {
                 selected_cards.push({index: i, letter: e.target.parentElement.dataset["letter"]});
             }
-            e.target.classList.toggle("selected-card");
+            e.target.classList.toggle(SELECTED_CARD_CLASS);
         });
         quiddler_card.appendChild(visible_card);
 
@@ -79,4 +83,25 @@ function populate_cards() {
     }
 }
 
+function deselect_all_cards() {
+    for (const element of document.querySelectorAll("." + SELECTED_CARD_CLASS)) {
+        element.classList.remove(SELECTED_CARD_CLASS);
+    }
+}
+
+function submit_cards() {
+    let word = "";
+    for (const element of selected_cards) {
+        if (element !== null) {
+            word += element.letter;
+        }
+    }
+    if (DICTIONARY.includes(word)) {
+        console.log("found");
+    }
+    deselect_all_cards();
+}
+
 populate_cards();
+
+document.querySelector("#submit-button").addEventListener("click", submit_cards);
