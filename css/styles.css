@@ -1,0 +1,22 @@
+:root {
+    --card-offset: 25px;
+}
+
+#cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: fit-content;
+    height: fit-content;
+}
+
+.quiddler-card {
+    position: relative;
+    padding-bottom: var(--card-offset);
+    padding-right: var(--card-offset);
+}
+
+.visible-card {
+    position: absolute;
+    top: var(--card-offset);
+    left: var(--card-offset);
+}
