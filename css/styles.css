@@ -2,6 +2,20 @@
     --card-offset: 25px;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#page-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 #cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
