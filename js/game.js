@@ -7,8 +7,10 @@ const POSSIBLE_LETTERS = ["a","b","cl","c","d","e","er","f","g","h","in","i","j"
 const SELECTED_CARD_CLASS = "selected-card";
 const VISIBLE_CARD_CLASS = "visible-card";
 const HIDDEN_CARD_CLASS = "hidden-card";
+const PLACEHOLDER_CARD_CLASS = "placeholder-card";
 
 let selected_cards = [];
+let selected_swap_index = -1;
 
 function mulberry32(a) {
     return function() {
@@ -55,8 +57,41 @@ function make_visible_card(index, letter) {
     visible_card.dataset.letter = letter;
     visible_card_image.draggable = false;
     visible_card.appendChild(visible_card_image)
-    if (index !== -1) {
+    if (letter === "none") {
         visible_card.addEventListener("click", (e) => {
+            if (selected_cards.length > 0 || selected_swap_index !== -1) {
+                return;
+            }
+            let selected = e.target.classList.contains(SELECTED_CARD_CLASS);
+            if (selected) {
+                selected_swap_index = -1;
+            } else {
+                selected_swap_index = index;
+            }
+            e.target.classList.toggle(SELECTED_CARD_CLASS);
+        });
+    } else {
+        visible_card.addEventListener("click", (e) => {
+            if (selected_swap_index !== -1) {
+                let parent = e.target.parentElement.parentElement;
+                let hidden_card = parent.querySelector("." + HIDDEN_CARD_CLASS);
+                if (hidden_card && Number(hidden_card.dataset["index"] !== -1)) {
+                    let new_visible_card = make_visible_card(Number(hidden_card.dataset["index"]), hidden_card.dataset["letter"]);
+                    let visible_cards = document.querySelectorAll("." + VISIBLE_CARD_CLASS);
+                    let selected_swap_card_index = Array.from(visible_cards).findIndex((x) => Number(x.dataset["index"]) === selected_swap_index);
+                    let swap_card_parent = visible_cards[selected_swap_card_index].parentElement;
+                    visible_cards[selected_swap_card_index].remove();
+                    swap_card_parent.appendChild(new_visible_card);
+
+                    let hidden_card_img = hidden_card.querySelector("img");
+                    hidden_card_img.src = ASSETS_BASE_PATH + "placeholder.png";
+                    hidden_card.classList.remove(HIDDEN_CARD_CLASS);
+                    hidden_card.classList.add(PLACEHOLDER_CARD_CLASS);
+
+                    selected_swap_index = -1;
+                }
+                return;
+            }
             let selected = e.target.classList.contains(SELECTED_CARD_CLASS);
             if (selected) {
                 let index = selected_cards.findIndex((x) => x.index === Number(e.target.parentElement.dataset["index"]));
@@ -70,6 +105,17 @@ function make_visible_card(index, letter) {
     return visible_card;
 }
 
+function make_placeholder_card() {
+    let placeholder_card = document.createElement("div");
+    placeholder_card.classList.add(PLACEHOLDER_CARD_CLASS);
+    let placeholder_card_image = document.createElement("img");
+    placeholder_card.dataset.index = -1;
+    placeholder_card_image.draggable = false;
+    placeholder_card_image.src = ASSETS_BASE_PATH + "placeholder.png";
+    placeholder_card.appendChild(placeholder_card_image)
+    return placeholder_card;
+}
+
 function make_hidden_card(index, letter) {
     let hidden_card = document.createElement("div");
     hidden_card.classList.add(HIDDEN_CARD_CLASS);
@@ -77,11 +123,7 @@ function make_hidden_card(index, letter) {
     hidden_card.dataset.index = index;
     hidden_card.dataset.letter = letter;
     hidden_card_image.draggable = false;
-    if (index === -1) {
-        hidden_card_image.src = ASSETS_BASE_PATH + "placeholder.png";
-    } else {
-        hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png";
-    }
+    hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png";
     hidden_card.appendChild(hidden_card_image)
     return hidden_card;
 }
@@ -119,14 +161,14 @@ function delete_cards(indexes) {
             let parent = element.parentElement;
             element.remove();
             let hidden_card = hidden_cards[hidden_cards.findIndex((x) => Number(x.dataset["index"]) === visible_card_index)];
-            if (hidden_card && Number(hidden_card.dataset["index"]) !== -1) {
-                let new_hidden_card = make_hidden_card(-1, "placeholder");
+            if (hidden_card) {
+                let new_hidden_card = make_placeholder_card();
                 parent.appendChild(new_hidden_card);
                 hidden_card.remove();
                 let new_visible_card = make_visible_card(Number(hidden_card.dataset["index"]), hidden_card.dataset["letter"]);
                 parent.appendChild(new_visible_card);
             } else {
-                let new_visible_card = make_visible_card(-1, "none");
+                let new_visible_card = make_visible_card(visible_card_index, "none");
                 parent.appendChild(new_visible_card);
             }
         }

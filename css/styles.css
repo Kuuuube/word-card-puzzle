@@ -24,7 +24,8 @@
 }
 
 .visible-card,
-.hidden-card {
+.hidden-card,
+.placeholder-card {
     user-select: none;
 }
 
