@@ -1,3 +1,4 @@
+// Scrabble NSWL2023
 export const DICTIONARY = [
     "aa",
     "ab",
