@@ -2,6 +2,8 @@ const CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
 const POSSIBLE_LETTERS = ["a","b","cl","c","d","e","er","f","g","h","in","i","j","k","l","m","n","o","p","q","qu","r","s","th","t","u","v","w","x","y","z"];
 
+let selected_cards = [];
+
 function mulberry32(a) {
     return function() {
         let t = a += 0x6D2B79F5;
@@ -55,9 +57,22 @@ function populate_cards() {
         let visible_card = document.createElement("div");
         visible_card.classList.add("visible-card");
         let visible_card_image = document.createElement("img");
-        visible_card_image.src = ASSETS_BASE_PATH + get_letter() + ".png"
+        let card_letter = get_letter();
+        visible_card_image.src = ASSETS_BASE_PATH + card_letter + ".png"
+        visible_card.dataset.index = i;
+        visible_card.dataset.letter = card_letter;
         visible_card_image.draggable = false;
         visible_card.appendChild(visible_card_image)
+        visible_card.addEventListener("click", (e) => {
+            let selected = e.target.classList.contains("selected-card");
+            if (selected) {
+                let index = selected_cards.findIndex((x) => x.index === Number(e.target.parentElement.dataset["index"]));
+                selected_cards.splice(index, 1);
+            } else {
+                selected_cards.push({index: i, letter: e.target.parentElement.dataset["letter"]});
+            }
+            e.target.classList.toggle("selected-card");
+        });
         quiddler_card.appendChild(visible_card);
 
         cards_grid.appendChild(quiddler_card);

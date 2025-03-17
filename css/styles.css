@@ -26,3 +26,6 @@
     user-select: none;
 }
 
+.selected-card {
+    filter: brightness(75%);
+}
