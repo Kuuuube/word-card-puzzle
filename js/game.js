@@ -22,6 +22,8 @@ function make_visible_card(index, letter) {
     visible_card.dataset.index = index;
     visible_card.dataset.letter = letter;
     visible_card_image.draggable = false;
+    visible_card_image.width = 162;
+    visible_card_image.height = 252;
     visible_card.appendChild(visible_card_image)
     if (letter === "none") {
         visible_card.addEventListener("click", (e) => {
@@ -79,6 +81,8 @@ function make_placeholder_card() {
     let placeholder_card_image = document.createElement("img");
     placeholder_card.dataset.index = -1;
     placeholder_card_image.draggable = false;
+    placeholder_card_image.width = 162;
+    placeholder_card_image.height = 252;
     placeholder_card_image.src = ASSETS_BASE_PATH + "placeholder.png";
     placeholder_card.appendChild(placeholder_card_image)
     return placeholder_card;
@@ -91,6 +95,8 @@ function make_hidden_card(index, letter) {
     hidden_card.dataset.index = index;
     hidden_card.dataset.letter = letter;
     hidden_card_image.draggable = false;
+    hidden_card_image.width = 162;
+    hidden_card_image.height = 252;
     hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png";
     hidden_card.appendChild(hidden_card_image)
     return hidden_card;

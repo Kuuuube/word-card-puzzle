@@ -65,6 +65,7 @@ html, body {
 .hidden-card > img,
 .placeholder-card > img {
     max-width: 100%;
+    height: auto;
 }
 
 .selected-card {
