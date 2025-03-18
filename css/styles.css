@@ -116,11 +116,18 @@ html, body {
 @media (orientation:portrait) {
     #cards-grid {
         grid-template-columns: 1fr 1fr;
+        padding: 0;
     }
     #content-wrapper {
         width: 100%;
     }
     .card-group {
         margin: auto;
+    }
+    html, body {
+        /* Reset to "default" values */
+        width: fit-content;
+        height: fit-content;
+        margin: 8px;
     }
 }
