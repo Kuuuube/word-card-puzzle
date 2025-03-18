@@ -115,7 +115,7 @@ function populate_cards() {
         cards_grid.appendChild(quiddler_card);
     }
 
-    let score_without_bonus = get_word_score(cards);
+    let score_without_bonus = get_word_score(cards, false);
     let score_without_bonus_element = document.querySelector("#score-without-bonus");
     score_without_bonus_element.innerHTML = score_without_bonus.toString();
 }
@@ -161,7 +161,7 @@ function submit_cards() {
     }
     if (DICTIONARY.includes(word_letters.join(""))) {
         delete_cards(card_indexes);
-        let score = get_word_score(word_letters);
+        let score = get_word_score(word_letters, true);
         let score_element = document.querySelector("#score-number");
         score_element.innerHTML = (Number(score_element.innerHTML) + score).toString();
     }

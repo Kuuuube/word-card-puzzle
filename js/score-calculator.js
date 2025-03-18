@@ -55,9 +55,11 @@ function get_length_bonus(length) {
     }
 }
 
-export function get_word_score(letters) {
+export function get_word_score(letters, calculate_bonus) {
     let score = 0;
-    score += get_length_bonus(letters.join("").length);
+    if (calculate_bonus) {
+        score += get_length_bonus(letters.join("").length);
+    }
     for (const letter of letters) {
         score += LETTER_SCORES[letter];
     }
