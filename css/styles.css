@@ -110,6 +110,12 @@ html, body {
     margin: 5px;
 }
 
+#new-random-puzzle:hover,
+#copy-puzzle-link:hover {
+    filter: brightness(90%);
+    transition: 0.1s;
+}
+
 .copyright-notice {
     font-size: x-small;
 }
