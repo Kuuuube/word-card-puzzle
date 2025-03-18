@@ -109,3 +109,7 @@ html, body {
     background-color: #ffffff;
     margin: 5px;
 }
+
+.copyright-notice {
+    font-size: x-small;
+}
