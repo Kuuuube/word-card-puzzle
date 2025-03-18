@@ -28,7 +28,7 @@ html, body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: fit-content;
     height: fit-content;
-    padding: 2em;
+    padding: 2em 2em 0 2em;
 }
 
 .quiddler-card {
@@ -53,7 +53,7 @@ html, body {
 .visible-card > img,
 .hidden-card > img,
 .placeholder-card > img {
-    width: 100%;
+    max-width: 100%;
 }
 
 .selected-card {
@@ -64,6 +64,7 @@ html, body {
     cursor: pointer;
     filter: brightness(75%);
     transition: 0.1s;
+    max-width: 100%;
 }
 
 #submit-button:hover {
