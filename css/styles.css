@@ -22,12 +22,12 @@ html, body {
     width: fit-content;
     height: fit-content;
     background-color: #dfdfdf;
-    padding: 25px;
+    padding: 2em;
 }
 
 .quiddler-card {
     position: relative;
-    padding-bottom: calc(var(--card-offset) * 2);
+    padding-bottom: calc(var(--card-offset) * 2.5);
     padding-right: calc(var(--card-offset) * 2);
 }
 
@@ -35,12 +35,19 @@ html, body {
     position: absolute;
     top: var(--card-offset);
     left: var(--card-offset);
+    z-index: 2;
 }
 
 .visible-card,
 .hidden-card,
 .placeholder-card {
     user-select: none;
+}
+
+.visible-card > img,
+.hidden-card > img,
+.placeholder-card > img {
+    width: 100%;
 }
 
 .selected-card {
