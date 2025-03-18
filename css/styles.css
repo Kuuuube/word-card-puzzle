@@ -99,9 +99,16 @@ html, body {
     border-radius: 10px;
     background-color: #ffffff;
     margin: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .fake-button:hover {
     filter: brightness(90%);
     transition: 0.1s;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
 }
