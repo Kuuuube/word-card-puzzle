@@ -65,6 +65,7 @@ html, body {
     filter: brightness(75%);
     transition: 0.1s;
     max-width: 75%;
+    height: auto;
 }
 
 #submit-button:hover {
