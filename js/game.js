@@ -1,6 +1,6 @@
 import {DICTIONARY} from "./dictionary.js";
 import {get_word_score} from "./score-calculator.js"
-import {get_cards} from "./puzzle-generator.js";
+import {get_cards, is_puzzle_still_solvable} from "./puzzle-generator.js";
 import {get_human_seed, get_random_seed} from "./math.js";
 
 const VISIBLE_CARD_COUNT = 8;
@@ -60,6 +60,7 @@ function make_visible_card(index, letter) {
 
                     selected_swap_index = -1;
                 }
+                check_solvability();
                 return;
             }
             let selected = e.target.classList.contains(SELECTED_CARD_CLASS);
@@ -157,6 +158,16 @@ function delete_cards(indexes) {
     }
 }
 
+function check_solvability() {
+    let visible_card_letters = Array.from(document.querySelectorAll("." + VISIBLE_CARD_CLASS)).map((x) => x.dataset["letter"]);
+    let solvable = is_puzzle_still_solvable(visible_card_letters);
+    if (!solvable) {
+        document.querySelector("#words").classList.add("puzzle-unsolvable-color");
+    } else {
+        document.querySelector("#words").classList.remove("puzzle-unsolvable-color");
+    }
+}
+
 function submit_cards() {
     let word_letters = [];
     let card_indexes = [];
@@ -179,6 +190,8 @@ function submit_cards() {
             words_list_element.textContent += ", ";
         }
         words_list_element.textContent += word;
+
+        check_solvability();
     }
     deselect_all_cards();
 }

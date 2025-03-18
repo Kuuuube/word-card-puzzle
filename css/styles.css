@@ -114,6 +114,10 @@ html, body {
     justify-content: space-between;
 }
 
+.puzzle-unsolvable-color {
+    color: rgb(177, 0, 0);
+}
+
 @media (pointer: none), (pointer: coarse), (hover: none) {
     #cards-grid {
         padding: 0;

@@ -42,3 +42,21 @@ export function get_cards(card_count) {
     }
     return cards;
 }
+
+export function is_puzzle_still_solvable(visible_cards) {
+    for (const word of DICTIONARY) {
+        // clone word
+        let working_word = word.repeat(1);
+        for (const card of visible_cards) {
+            if (card === "none") {
+                continue;
+            }
+            working_word = working_word.replace(card, "");
+        }
+        if (working_word.length === 0) {
+            console.log(word);
+            return true;
+        }
+    }
+    return false;
+}
