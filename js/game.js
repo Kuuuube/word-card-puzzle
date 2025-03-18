@@ -166,11 +166,19 @@ function submit_cards() {
             card_indexes.push(element.index);
         }
     }
-    if (DICTIONARY.includes(word_letters.join(""))) {
+    let word = word_letters.join("");
+    if (DICTIONARY.includes(word)) {
         delete_cards(card_indexes);
+
         let score = get_word_score(word_letters, true);
         let score_element = document.querySelector("#score-number");
         score_element.innerHTML = (Number(score_element.innerHTML) + score).toString();
+
+        let words_list_element = document.querySelector("#words-list");
+        if (words_list_element.textContent.length > 0) {
+            words_list_element.textContent += ", ";
+        }
+        words_list_element.textContent += word;
     }
     deselect_all_cards();
 }
