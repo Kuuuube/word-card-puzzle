@@ -47,7 +47,7 @@ function make_visible_card(index, letter) {
                 let parent = e.target.parentElement.parentElement;
                 let hidden_card = parent.querySelector("." + HIDDEN_CARD_CLASS);
                 if (hidden_card && Number(hidden_card.dataset["index"] !== -1)) {
-                    let new_visible_card = make_visible_card(Number(hidden_card.dataset["index"]), hidden_card.dataset["letter"]);
+                    let new_visible_card = make_visible_card(selected_swap_index, hidden_card.dataset["letter"]);
                     let visible_cards = document.querySelectorAll("." + VISIBLE_CARD_CLASS);
                     let selected_swap_card_index = Array.from(visible_cards).findIndex((x) => Number(x.dataset["index"]) === selected_swap_index);
                     let swap_card_parent = visible_cards[selected_swap_card_index].parentElement;
