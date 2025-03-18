@@ -8,6 +8,14 @@ html, body {
     margin: 0;
 }
 
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+}
+
 #page-wrapper,
 #content-wrapper {
     display: flex;
@@ -34,7 +42,10 @@ html, body {
 .quiddler-card {
     position: relative;
     padding-bottom: calc(var(--card-offset) * 2.5);
-    padding-right: calc(var(--card-offset) * 2);
+    padding-right: var(--card-offset);
+
+    margin-left: calc(var(--card-offset) / 2);
+    margin-right: calc(var(--card-offset) / 2);
 }
 
 .visible-card {
