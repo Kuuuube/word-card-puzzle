@@ -53,3 +53,14 @@ html, body {
 .selected-card {
     filter: brightness(75%);
 }
+
+#submit-button {
+    cursor: pointer;
+    filter: brightness(75%);
+    transition: 0.1s;
+}
+
+#submit-button:hover {
+    filter: brightness(120%);
+    transition: 0.1s;
+}
