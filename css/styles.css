@@ -64,7 +64,7 @@ html, body {
     cursor: pointer;
     filter: brightness(75%);
     transition: 0.1s;
-    max-width: 100%;
+    max-width: 75%;
 }
 
 #submit-button:hover {
