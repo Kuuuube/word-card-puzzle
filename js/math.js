@@ -16,6 +16,17 @@ function hash_code(s) {
     return h;
 }
 
+export function get_human_seed() {
+    const url_params = new URLSearchParams(window.location.search);
+    const url_seed = url_params.get("seed");
+    if (url_seed) {
+        return url_seed;
+    }
+    const MILLISECONDS_PER_DAY = 86400000;
+    const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
+    return epoch_day.toString();
+}
+
 function get_seed() {
     const url_params = new URLSearchParams(window.location.search);
     const url_seed = url_params.get("seed");
@@ -25,6 +36,10 @@ function get_seed() {
     const MILLISECONDS_PER_DAY = 86400000;
     const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
     return hash_code(epoch_day.toString());
+}
+
+export function get_random_seed() {
+    return (Math.random()*2**32)>>>0;
 }
 
 export const seeded_rand = mulberry32(get_seed())

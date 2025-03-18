@@ -1,6 +1,7 @@
 import {DICTIONARY} from "./dictionary.js";
 import {get_word_score} from "./score-calculator.js"
 import {get_cards} from "./puzzle-generator.js";
+import {get_human_seed, get_random_seed} from "./math.js";
 
 const VISIBLE_CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
@@ -168,6 +169,21 @@ function submit_cards() {
     deselect_all_cards();
 }
 
+function copy_url() {
+    let seed = get_human_seed();
+    navigator.clipboard.writeText(window.location.origin + "/?seed=" + seed);
+}
+
+function new_random_puzzle() {
+    let seed = get_random_seed().toString();
+    const url_params = new URLSearchParams(window.location.search);
+    url_params.set("seed", seed);
+    window.history.pushState(null, null, "?" + url_params.toString());
+    window.location.reload();
+}
+
 populate_cards();
 
 document.querySelector("#submit-button").addEventListener("click", submit_cards);
+document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
+document.querySelector("#new-random-puzzle").addEventListener("click", new_random_puzzle);
