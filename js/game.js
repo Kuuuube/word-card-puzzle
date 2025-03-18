@@ -1,11 +1,9 @@
 import {DICTIONARY} from "./dictionary.js";
-import {seededRand} from "./math.js";
-import {get_letters_deck} from "./card-deck.js"
 import {get_word_score} from "./score-calculator.js"
+import {get_cards} from "./puzzle-generator.js";
 
-const CARD_COUNT = 8;
+const VISIBLE_CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
-const POSSIBLE_LETTERS = get_letters_deck();
 
 const SELECTED_CARD_CLASS = "selected-card";
 const VISIBLE_CARD_CLASS = "visible-card";
@@ -14,11 +12,6 @@ const PLACEHOLDER_CARD_CLASS = "placeholder-card";
 
 let selected_cards = [];
 let selected_swap_index = -1;
-
-function get_letter() {
-    let random_index = Math.floor(seededRand() * POSSIBLE_LETTERS.length);
-    return POSSIBLE_LETTERS[random_index];
-}
 
 function make_visible_card(index, letter) {
     let visible_card = document.createElement("div");
@@ -104,14 +97,18 @@ function make_hidden_card(index, letter) {
 
 function populate_cards() {
     let cards_grid = document.querySelector("#cards-grid");
-    for (let i = 0; i < CARD_COUNT; i++) {
+    let cards = get_cards(VISIBLE_CARD_COUNT * 2);
+
+    for (let i = 0; i < VISIBLE_CARD_COUNT; i++) {
         let quiddler_card = document.createElement("div");
         quiddler_card.classList.add("quiddler-card");
 
-        let hidden_card = make_hidden_card(i, get_letter());
+        let visible_card_letter = cards[i];
+        let hidden_card_letter = cards[i + VISIBLE_CARD_COUNT];
+
+        let hidden_card = make_hidden_card(i, hidden_card_letter);
         quiddler_card.appendChild(hidden_card);
 
-        let visible_card_letter = get_letter();
         let visible_card = make_visible_card(i, visible_card_letter);
         quiddler_card.appendChild(visible_card);
 

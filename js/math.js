@@ -27,4 +27,12 @@ function get_seed() {
     return hash_code(epoch_day.toString());
 }
 
-export const seededRand = mulberry32(get_seed())
+export const seeded_rand = mulberry32(get_seed())
+
+// Durstenfeld shuffle, in-place
+export function shuffle_array(array) {
+    for (let i = array.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
