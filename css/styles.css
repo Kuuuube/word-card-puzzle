@@ -36,7 +36,6 @@ html, body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
     height: fit-content;
-    padding: 2em 2em 0 2em;
 }
 
 .card-group {
@@ -114,9 +113,8 @@ html, body {
     justify-content: space-between;
 }
 
-@media (orientation:portrait) {
+@media (pointer: none), (pointer: coarse), (hover: none) {
     #cards-grid {
-        grid-template-columns: 1fr 1fr;
         padding: 0;
     }
     #content-wrapper {
@@ -130,5 +128,17 @@ html, body {
         width: fit-content;
         height: fit-content;
         margin: 8px;
+    }
+}
+
+@media (orientation:portrait) {
+    #cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (orientation:landscape) {
+    #cards-grid {
+        padding: 2em 2em 0 2em;
     }
 }
