@@ -28,7 +28,7 @@ html, body {
 #content-wrapper {
     width: fit-content;
     border: 1px solid #000000;
-    margin: 10px 0px;
+    margin: 10px 10px;
     background-color: #dfdfdf;
 }
 
@@ -140,6 +140,6 @@ html, body {
 
 @media (orientation:landscape) {
     #cards-grid {
-        padding: 2em 2em 0 2em;
+        /* padding: 2em 2em 0 2em; */
     }
 }
