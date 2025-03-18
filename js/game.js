@@ -97,7 +97,7 @@ function make_hidden_card(index, letter) {
     hidden_card_image.draggable = false;
     hidden_card_image.width = 162;
     hidden_card_image.height = 252;
-    hidden_card_image.src = ASSETS_BASE_PATH + "quiddler_card_back.png";
+    hidden_card_image.src = ASSETS_BASE_PATH + "card_back.png";
     hidden_card.appendChild(hidden_card_image)
     return hidden_card;
 }
