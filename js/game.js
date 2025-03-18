@@ -1,6 +1,7 @@
 import {DICTIONARY} from "./dictionary.js";
 import {seededRand} from "./math.js";
 import {get_letters_deck} from "./card-deck.js"
+import {get_word_score} from "./score-calculator.js"
 
 const CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
@@ -149,16 +150,19 @@ function delete_cards(indexes) {
 }
 
 function submit_cards() {
-    let word = "";
+    let word_letters = [];
     let card_indexes = [];
     for (const element of selected_cards) {
         if (element !== null) {
-            word += element.letter;
+            word_letters.push(element.letter);
             card_indexes.push(element.index);
         }
     }
-    if (DICTIONARY.includes(word)) {
+    if (DICTIONARY.includes(word_letters.join(""))) {
         delete_cards(card_indexes);
+        let score = get_word_score(word_letters);
+        let score_element = document.querySelector("#score-number");
+        score_element.innerHTML = (Number(score_element.innerHTML) + score).toString();
     }
     deselect_all_cards();
 }
