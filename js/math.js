@@ -1,3 +1,5 @@
+export const MILLISECONDS_PER_DAY = 86400000;
+
 function mulberry32(a) {
     return function() {
         let t = a += 0x6D2B79F5;
@@ -22,7 +24,6 @@ export function get_human_seed() {
     if (url_seed) {
         return url_seed;
     }
-    const MILLISECONDS_PER_DAY = 86400000;
     const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
     return epoch_day.toString();
 }
@@ -33,7 +34,6 @@ function get_seed() {
     if (url_seed) {
         return hash_code(url_seed);
     }
-    const MILLISECONDS_PER_DAY = 86400000;
     const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
     return hash_code(epoch_day.toString());
 }

@@ -17,6 +17,10 @@ html, body {
     width: 100%;
 }
 
+#header-title {
+    margin: 0;
+}
+
 #page-wrapper,
 #content-wrapper {
     display: flex;

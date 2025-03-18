@@ -1,7 +1,7 @@
 import {DICTIONARY} from "./dictionary.js";
 import {get_word_score} from "./score-calculator.js"
 import {get_cards, is_puzzle_still_solvable} from "./puzzle-generator.js";
-import {get_human_seed, get_random_seed} from "./math.js";
+import {get_human_seed, get_random_seed, MILLISECONDS_PER_DAY} from "./math.js";
 
 const VISIBLE_CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
@@ -212,9 +212,24 @@ function restart_puzzle() {
     window.location.reload();
 }
 
+function set_date() {
+    let utc_milliseconds = get_human_seed();
+    // Require exact UTC day between 2024/10/3 and 2080/6/1
+    if (utc_milliseconds < 1728000000000 || utc_milliseconds > 3484512000000 || utc_milliseconds % MILLISECONDS_PER_DAY !== 0) {
+        return;
+    }
+    let date = new Date(0);
+    date.setUTCMilliseconds(utc_milliseconds);
+    
+    // getMonth is zero indexed
+    document.querySelector("#daily-date").textContent = "(" + date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + ")";
+}
+
 populate_cards();
 
 document.querySelector("#submit-button").addEventListener("click", submit_cards);
 document.querySelector("#restart-puzzle").addEventListener("click", restart_puzzle);
 document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
 document.querySelector("#new-random-puzzle").addEventListener("click", new_random_puzzle);
+
+set_date();
