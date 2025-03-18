@@ -34,7 +34,7 @@ html, body {
 #cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     padding: 2em 2em 0 2em;
 }
