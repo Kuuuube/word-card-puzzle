@@ -198,7 +198,7 @@ function submit_cards() {
 
 function copy_url() {
     let seed = get_human_seed();
-    navigator.clipboard.writeText(window.location.origin + "/?seed=" + seed);
+    navigator.clipboard.writeText(window.location.origin + window.location.pathname + "?seed=" + seed);
 }
 
 function new_random_puzzle() {
