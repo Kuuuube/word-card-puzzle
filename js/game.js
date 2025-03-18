@@ -58,6 +58,8 @@ function make_visible_card(index, letter) {
                     hidden_card_img.src = ASSETS_BASE_PATH + "placeholder.png";
                     hidden_card.classList.remove(HIDDEN_CARD_CLASS);
                     hidden_card.classList.add(PLACEHOLDER_CARD_CLASS);
+                    delete hidden_card.dataset["letter"];
+                    delete hidden_card.dataset["index"];
 
                     selected_swap_index = -1;
                 }
