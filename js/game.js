@@ -188,8 +188,13 @@ function new_random_puzzle() {
     window.location.reload();
 }
 
+function restart_puzzle() {
+    window.location.reload();
+}
+
 populate_cards();
 
 document.querySelector("#submit-button").addEventListener("click", submit_cards);
+document.querySelector("#restart-puzzle").addEventListener("click", restart_puzzle);
 document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
 document.querySelector("#new-random-puzzle").addEventListener("click", new_random_puzzle);

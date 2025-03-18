@@ -92,7 +92,7 @@ html, body {
     text-align: center;
 }
 
-#new-random-puzzle {
+.fake-button {
     user-select: none;
     cursor: pointer;
     border: 1px solid #000000;
@@ -101,17 +101,7 @@ html, body {
     margin: 5px;
 }
 
-#copy-puzzle-link {
-    user-select: none;
-    cursor: pointer;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    background-color: #ffffff;
-    margin: 5px;
-}
-
-#new-random-puzzle:hover,
-#copy-puzzle-link:hover {
+.fake-button:hover {
     filter: brightness(90%);
     transition: 0.1s;
 }
