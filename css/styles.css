@@ -101,6 +101,7 @@ html, body {
     margin: 5px;
     padding-left: 5px;
     padding-right: 5px;
+    flex: 1;
 }
 
 .fake-button:hover {
