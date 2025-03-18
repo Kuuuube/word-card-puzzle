@@ -83,3 +83,10 @@ html, body {
     filter: brightness(120%);
     transition: 0.1s;
 }
+
+.header-left,
+.header-center,
+.header-right {
+    width: 33.33333%;
+    text-align: center;
+}
