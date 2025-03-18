@@ -205,8 +205,7 @@ function new_random_puzzle() {
     let seed = get_random_seed().toString();
     const url_params = new URLSearchParams(window.location.search);
     url_params.set("seed", seed);
-    window.history.pushState(null, null, "?" + url_params.toString());
-    window.location.reload();
+    window.location.href = window.location.origin + window.location.pathname + "?" + url_params.toString();
 }
 
 function restart_puzzle() {
