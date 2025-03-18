@@ -1,9 +1,10 @@
 import {DICTIONARY} from "./dictionary.js";
 import {seededRand} from "./math.js";
+import {get_letters_deck} from "./card-deck.js"
 
 const CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
-const POSSIBLE_LETTERS = ["a","b","cl","c","d","e","er","f","g","h","in","i","j","k","l","m","n","o","p","q","qu","r","s","th","t","u","v","w","x","y","z"];
+const POSSIBLE_LETTERS = get_letters_deck();
 
 const SELECTED_CARD_CLASS = "selected-card";
 const VISIBLE_CARD_CLASS = "visible-card";
