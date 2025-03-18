@@ -107,19 +107,19 @@ function populate_cards() {
     let cards = get_cards(VISIBLE_CARD_COUNT * 2);
 
     for (let i = 0; i < VISIBLE_CARD_COUNT; i++) {
-        let quiddler_card = document.createElement("div");
-        quiddler_card.classList.add("quiddler-card");
+        let card_group = document.createElement("div");
+        card_group.classList.add("card-group");
 
         let visible_card_letter = cards[i];
         let hidden_card_letter = cards[i + VISIBLE_CARD_COUNT];
 
         let hidden_card = make_hidden_card(i, hidden_card_letter);
-        quiddler_card.appendChild(hidden_card);
+        card_group.appendChild(hidden_card);
 
         let visible_card = make_visible_card(i, visible_card_letter);
-        quiddler_card.appendChild(visible_card);
+        card_group.appendChild(visible_card);
 
-        cards_grid.appendChild(quiddler_card);
+        cards_grid.appendChild(card_group);
     }
 
     let score_without_bonus = get_word_score(cards, false);

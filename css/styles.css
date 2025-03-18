@@ -39,7 +39,7 @@ html, body {
     padding: 2em 2em 0 2em;
 }
 
-.quiddler-card {
+.card-group {
     position: relative;
     padding-bottom: calc(var(--card-offset) * 2.5);
     padding-right: var(--card-offset);
@@ -114,9 +114,4 @@ html, body {
 #copy-puzzle-link:hover {
     filter: brightness(90%);
     transition: 0.1s;
-}
-
-.copyright-notice {
-    font-size: x-small;
-    text-align: center;
 }
