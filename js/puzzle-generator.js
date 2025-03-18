@@ -54,7 +54,6 @@ export function is_puzzle_still_solvable(visible_cards) {
             working_word = working_word.replace(card, "");
         }
         if (working_word.length === 0) {
-            console.log(word);
             return true;
         }
     }
