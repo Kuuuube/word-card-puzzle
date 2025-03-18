@@ -30,45 +30,15 @@ function parse_word(word) {
 
 export function get_cards(card_count) {
     let cards = [];
-    let parsed_words = [];
     while (cards.length < card_count) {
         let word = DICTIONARY[Math.floor(seeded_rand() * DICTIONARY_LENGTH)];
         let word_letters = parse_word(word);
         if (word_letters.length > Math.floor(card_count / 2) || word_letters.length + cards.length > card_count) {
             continue;
         }
-        parsed_words.push(word_letters);
         // in-place shuffle
         shuffle_array(word_letters)
         cards = cards.concat(word_letters);
     }
-    if (!check_solvability(parsed_words, cards)) {
-        return get_cards(card_count);
-    }
     return cards;
-}
-
-function check_solvability(words, cards) {
-    //clone arrays
-    let working_cards = Array.from(cards);
-    let working_words = Array.from(words);
-
-    const words_length = working_words.length;
-    const cards_length = working_cards.length;
-    for (let i = 0; i < words_length; i++) {
-        for (let j = 0; j < cards_length; j++) {
-            if (working_cards[j] === "-") {
-                continue;
-            }
-            if (working_words[i].includes(working_cards[j])) {
-                working_words[i][working_words[i].findIndex((x) => x === working_cards[j])] = "-";
-                working_cards[j] = "-";
-            }
-        }
-    }
-
-    if (working_words.flat().join("").replaceAll("-", "").length > 0) {
-        return false;
-    }
-    return true;
 }
