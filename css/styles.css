@@ -44,8 +44,8 @@ html, body {
     padding-bottom: calc(var(--card-offset) * 2.5);
     padding-right: var(--card-offset);
 
-    margin-left: calc(var(--card-offset) / 2);
-    margin-right: calc(var(--card-offset) / 2);
+    margin-left: var(--card-offset);
+    margin-right: calc(var(--card-offset) / 2.5);
 }
 
 .visible-card {
