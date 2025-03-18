@@ -17,8 +17,8 @@ function hash_code(s) {
 }
 
 function get_seed() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const url_seed = urlParams.get("seed");
+    const url_params = new URLSearchParams(window.location.search);
+    const url_seed = url_params.get("seed");
     if (url_seed) {
         return hash_code(url_seed);
     }
