@@ -114,6 +114,10 @@ function populate_cards() {
 
         cards_grid.appendChild(quiddler_card);
     }
+
+    let score_without_bonus = get_word_score(cards);
+    let score_without_bonus_element = document.querySelector("#score-without-bonus");
+    score_without_bonus_element.innerHTML = score_without_bonus.toString();
 }
 
 function deselect_all_cards() {
