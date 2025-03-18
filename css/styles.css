@@ -112,3 +112,15 @@ html, body {
     display: flex;
     justify-content: space-between;
 }
+
+@media (orientation:portrait) {
+    #cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    #content-wrapper {
+        width: 100%;
+    }
+    .card-group {
+        margin: auto;
+    }
+}
