@@ -30,7 +30,7 @@ function make_visible_card(index, letter) {
     visible_card.appendChild(visible_card_image)
     if (letter === "none") {
         visible_card.addEventListener("click", (e) => {
-            if (selected_cards.length > 0 || selected_swap_index !== -1) {
+            if (selected_cards.length > 0 || (selected_swap_index !== -1 && selected_swap_index !== index)) {
                 return;
             }
             let selected = e.target.classList.contains(SELECTED_CARD_CLASS);
