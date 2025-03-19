@@ -122,6 +122,10 @@ html, body {
     color: rgb(177, 0, 0);
 }
 
+.puzzle-solved-color {
+    color: rgb(0, 177, 24);
+}
+
 @media (pointer: none), (pointer: coarse), (hover: none) {
     #cards-grid {
         padding: 0;

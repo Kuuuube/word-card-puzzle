@@ -160,11 +160,15 @@ function delete_cards(indexes) {
 
 function check_solvability() {
     let visible_card_letters = Array.from(document.querySelectorAll("." + VISIBLE_CARD_CLASS)).map((x) => x.dataset["letter"]).filter((x) => x !== "none");
+    let hidden_card_letters = Array.from(document.querySelectorAll("." + HIDDEN_CARD_CLASS)).map((x) => x.dataset["letter"]).filter((x) => x !== "none");
     let solvable = is_puzzle_still_solvable(visible_card_letters);
     if ((!solvable && visible_card_letters.length > 0) || visible_card_letters.length === 1) {
         document.querySelector("#words").classList.add("puzzle-unsolvable-color");
     } else {
         document.querySelector("#words").classList.remove("puzzle-unsolvable-color");
+    }
+    if (visible_card_letters.length === 0 && hidden_card_letters.length === 0) {
+        document.querySelector("#words").classList.add("puzzle-solved-color");
     }
 }
 
