@@ -223,6 +223,10 @@ function new_random_puzzle() {
     window.location.href = window.location.origin + window.location.pathname + "?" + url_params.toString();
 }
 
+function jump_to_daily_puzzle() {
+    window.location.href = window.location.origin + window.location.pathname;
+}
+
 function restart_puzzle() {
     window.location.reload();
 }
@@ -246,5 +250,6 @@ document.querySelector("#submit-button").addEventListener("click", submit_cards)
 document.querySelector("#restart-puzzle").addEventListener("click", restart_puzzle);
 document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
 document.querySelector("#new-random-puzzle").addEventListener("click", new_random_puzzle);
+document.querySelector("#daily-puzzle").addEventListener("click", jump_to_daily_puzzle);
 
 set_date();
