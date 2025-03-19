@@ -71,9 +71,14 @@ function make_visible_card(index, letter) {
                 selected_cards.push({index: index, letter: e.target.parentElement.dataset["letter"]});
             }
             e.target.classList.toggle(SELECTED_CARD_CLASS);
+            update_selected_letters_display();
         });
     }
     return visible_card;
+}
+
+function update_selected_letters_display() {
+    document.querySelector("#selected-letters").textContent = selected_cards.map((x) => x.letter).join("");
 }
 
 function make_placeholder_card() {
@@ -203,6 +208,7 @@ function submit_cards() {
         check_solvability();
     }
     deselect_all_cards();
+    update_selected_letters_display();
 }
 
 function copy_url() {
