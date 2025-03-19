@@ -161,7 +161,7 @@ function delete_cards(indexes) {
 function check_solvability() {
     let visible_card_letters = Array.from(document.querySelectorAll("." + VISIBLE_CARD_CLASS)).map((x) => x.dataset["letter"]).filter((x) => x !== "none");
     let solvable = is_puzzle_still_solvable(visible_card_letters);
-    if (!solvable && visible_card_letters.length > 0) {
+    if ((!solvable && visible_card_letters.length > 0) || visible_card_letters.length === 1) {
         document.querySelector("#words").classList.add("puzzle-unsolvable-color");
     } else {
         document.querySelector("#words").classList.remove("puzzle-unsolvable-color");
@@ -171,6 +171,11 @@ function check_solvability() {
 function submit_cards() {
     let word_letters = [];
     let card_indexes = [];
+    if (selected_cards.length <= 1) {
+        deselect_all_cards();
+        return;
+    }
+
     for (const element of selected_cards) {
         if (element !== null) {
             word_letters.push(element.letter);
