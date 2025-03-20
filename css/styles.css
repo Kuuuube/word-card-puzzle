@@ -127,7 +127,12 @@ html, body {
 }
 
 #selected {
-    height: 1lh;
+    height: 2lh;
+    max-height: 2lh;
+    line-break: anywhere;
+    margin-bottom: 0;
+    overflow: clip;
+    text-overflow: clip;
 }
 
 @media (pointer: none), (pointer: coarse), (hover: none) {
