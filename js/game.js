@@ -182,6 +182,7 @@ function submit_cards() {
     let card_indexes = [];
     if (selected_cards.length <= 1) {
         deselect_all_cards();
+        update_selected_letters_display();
         return;
     }
 
