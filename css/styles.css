@@ -126,6 +126,10 @@ html, body {
     color: rgb(0, 177, 24);
 }
 
+#selected {
+    height: 1lh;
+}
+
 @media (pointer: none), (pointer: coarse), (hover: none) {
     #cards-grid {
         padding: 0;
