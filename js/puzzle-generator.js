@@ -48,7 +48,7 @@ export function is_puzzle_still_solvable(visible_cards) {
         // clone word
         let working_word = word.repeat(1);
         for (const card of visible_cards) {
-            if (card === "none") {
+            if (card === "none" || word === card) {
                 continue;
             }
             working_word = working_word.replace(card, "");
