@@ -146,7 +146,8 @@ html, body {
 
 @media (orientation:portrait) {
     #cards-grid {
-        grid-template-columns: 1fr 1fr;
+        /* Show cards in in 2x4 instead of 4x2 */
+        /* grid-template-columns: 1fr 1fr; */
     }
 }
 
