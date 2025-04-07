@@ -177,6 +177,7 @@ function check_solvability() {
     }
     if (visible_card_letters.length === 0 && hidden_card_letters.length === 0) {
         document.querySelector("#words").classList.add("puzzle-solved-color");
+        document.querySelector("#beat-the-bot-button").hidden = false;
     }
 }
 
