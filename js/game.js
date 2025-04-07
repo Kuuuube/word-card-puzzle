@@ -242,7 +242,7 @@ function set_date() {
     date.setUTCMilliseconds(utc_milliseconds);
     
     // getMonth is zero indexed
-    document.querySelector("#daily-date").textContent = "(" + date.getUTCFullYear() + "/" + (date.getUTCMonth() + 1) + "/" + date.getUTCDate() + ")";
+    document.querySelector("#daily-date").textContent = "(" + date.getUTCFullYear().toString().padStart(4, "0") + "/" + (date.getUTCMonth() + 1).toString().padStart(2, "0") + "/" + date.getUTCDate().toString().padStart(2, "0") + ")";
 }
 
 populate_cards();
