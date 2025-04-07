@@ -30,17 +30,20 @@ function parse_word(word) {
 
 export function get_cards(card_count) {
     let cards = [];
+    let words_and_letters = [];
     while (cards.length < card_count) {
         let word = DICTIONARY[Math.floor(seeded_rand() * DICTIONARY_LENGTH)];
         let word_letters = parse_word(word);
         if (word_letters.length > Math.floor(card_count / 2) || word_letters.length + cards.length > card_count) {
             continue;
         }
+        words_and_letters.push({word: word, letters: word_letters});
+
         // in-place shuffle
-        shuffle_array(word_letters)
+        shuffle_array(word_letters);
         cards = cards.concat(word_letters);
     }
-    return cards;
+    return {cards: cards, words_and_letters: words_and_letters};
 }
 
 export function is_puzzle_still_solvable(visible_cards) {

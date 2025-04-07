@@ -14,6 +14,8 @@ const PLACEHOLDER_CARD_CLASS = "placeholder-card";
 let selected_cards = [];
 let selected_swap_index = -1;
 
+let puzzle_words_and_letters = [];
+
 function make_visible_card(index, letter) {
     let visible_card = document.createElement("div");
     visible_card.classList.add(VISIBLE_CARD_CLASS);
@@ -110,7 +112,8 @@ function make_hidden_card(index, letter) {
 
 function populate_cards() {
     let cards_grid = document.querySelector("#cards-grid");
-    let cards = get_cards(VISIBLE_CARD_COUNT * 2);
+    const {cards, words_and_letters} = get_cards(VISIBLE_CARD_COUNT * 2);
+    puzzle_words_and_letters = words_and_letters;
 
     for (let i = 0; i < VISIBLE_CARD_COUNT; i++) {
         let card_group = document.createElement("div");
@@ -245,6 +248,28 @@ function set_date() {
     document.querySelector("#daily-date").textContent = "(" + date.getUTCFullYear().toString().padStart(4, "0") + "/" + (date.getUTCMonth() + 1).toString().padStart(2, "0") + "/" + date.getUTCDate().toString().padStart(2, "0") + ")";
 }
 
+function setup_beat_the_bot_modal() {
+    let beat_the_bot_modal = document.querySelector("#beat-the-bot-modal");
+    document.querySelector("#beat-the-bot-button").addEventListener("click", () => { beat_the_bot_modal.style.display = "block"; });
+    document.querySelector("#close-beat-the-bot").addEventListener("click", () => { beat_the_bot_modal.style.display = "none"; });
+    window.addEventListener("click", (e) => {
+        if (e.target == beat_the_bot_modal) {
+            beat_the_bot_modal.style.display = "none";
+        }
+    });
+
+    let words = [];
+    let score = 0;
+
+    for (const {word, letters} of puzzle_words_and_letters) {
+        words.push(word);
+        score += get_word_score(letters, true);
+    }
+
+    document.querySelector("#beat-the-bot-words").textContent = words.join(", ");
+    document.querySelector("#beat-the-bot-score").textContent = score.toString();
+}
+
 populate_cards();
 
 document.querySelector("#submit-button").addEventListener("click", submit_cards);
@@ -252,5 +277,7 @@ document.querySelector("#restart-puzzle").addEventListener("click", restart_puzz
 document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
 document.querySelector("#new-random-puzzle").addEventListener("click", new_random_puzzle);
 document.querySelector("#daily-puzzle").addEventListener("click", jump_to_daily_puzzle);
+
+setup_beat_the_bot_modal();
 
 set_date();
