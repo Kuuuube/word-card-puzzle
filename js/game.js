@@ -232,10 +232,6 @@ function get_daily_puzzle() {
     return window.location.origin + window.location.pathname;
 }
 
-function restart_puzzle() {
-    window.location.reload();
-}
-
 function set_date() {
     let utc_milliseconds = get_human_seed();
     // Require exact UTC day between 2024/10/3 and 2080/6/1
@@ -277,7 +273,7 @@ function setup_beat_the_bot_modal() {
 function setup_fake_button_links() {
     document.querySelector("#new-random-puzzle").href = get_new_random_puzzle();
     document.querySelector("#daily-puzzle").href = get_daily_puzzle();
-    document.querySelector("#restart-puzzle").addEventListener("click", restart_puzzle);
+    document.querySelector("#restart-puzzle").href = window.location.href;
 }
 
 populate_cards();
