@@ -260,14 +260,17 @@ function setup_beat_the_bot_modal() {
 
     let words = [];
     let score = 0;
+    let score_without_bonus = 0;
 
     for (const {word, letters} of puzzle_words_and_letters) {
         words.push(word);
         score += get_word_score(letters, true);
+        score_without_bonus += get_word_score(letters, false);
     }
 
     document.querySelector("#beat-the-bot-words").textContent = words.join(", ");
     document.querySelector("#beat-the-bot-score").textContent = score.toString();
+    document.querySelector("#beat-the-bot-score-without-bonus").textContent = score_without_bonus.toString();
 }
 
 populate_cards();
