@@ -221,15 +221,15 @@ function copy_url() {
     navigator.clipboard.writeText(window.location.origin + window.location.pathname + "?seed=" + seed);
 }
 
-function new_random_puzzle() {
+function get_new_random_puzzle() {
     let seed = get_random_seed().toString();
     const url_params = new URLSearchParams(window.location.search);
     url_params.set("seed", seed);
-    window.location.href = window.location.origin + window.location.pathname + "?" + url_params.toString();
+    return window.location.origin + window.location.pathname + "?" + url_params.toString();
 }
 
-function jump_to_daily_puzzle() {
-    window.location.href = window.location.origin + window.location.pathname;
+function get_daily_puzzle() {
+    return window.location.origin + window.location.pathname;
 }
 
 function restart_puzzle() {
@@ -274,13 +274,18 @@ function setup_beat_the_bot_modal() {
     document.querySelector("#beat-the-bot-score-without-bonus").textContent = score_without_bonus.toString();
 }
 
+function setup_fake_button_links() {
+    document.querySelector("#new-random-puzzle").href = get_new_random_puzzle();
+    document.querySelector("#daily-puzzle").href = get_daily_puzzle();
+    document.querySelector("#restart-puzzle").addEventListener("click", restart_puzzle);
+}
+
 populate_cards();
 
 document.querySelector("#submit-button").addEventListener("click", submit_cards);
-document.querySelector("#restart-puzzle").addEventListener("click", restart_puzzle);
 document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
-document.querySelector("#new-random-puzzle").addEventListener("click", new_random_puzzle);
-document.querySelector("#daily-puzzle").addEventListener("click", jump_to_daily_puzzle);
+
+setup_fake_button_links();
 
 setup_beat_the_bot_modal();
 
