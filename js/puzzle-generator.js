@@ -10,15 +10,17 @@ function coinflip() {
 
 function parse_word(word) {
     let letters = [];
-    for (const double_letter of POSSIBLE_DOUBLE_LETTERS) {
-        while (word.includes(double_letter)) {
-            let coinflip_result = coinflip();
-            if (coinflip_result) {
-                letters.push(double_letter);
-                word = word.replace(double_letter, "");
-            } else {
-                letters = letters.concat(double_letter.split(""));
-                word = word.replace(double_letter, "");
+    if (word.length > 2) {
+        for (const double_letter of POSSIBLE_DOUBLE_LETTERS) {
+            while (word.includes(double_letter)) {
+                let coinflip_result = coinflip();
+                if (coinflip_result) {
+                    letters.push(double_letter);
+                    word = word.replace(double_letter, "");
+                } else {
+                    letters = letters.concat(double_letter.split(""));
+                    word = word.replace(double_letter, "");
+                }
             }
         }
     }
