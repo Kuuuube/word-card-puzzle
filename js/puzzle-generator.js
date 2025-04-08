@@ -36,7 +36,7 @@ export function get_cards(card_count) {
     while (cards.length < card_count) {
         let word = DICTIONARY[Math.floor(seeded_rand() * DICTIONARY_LENGTH)];
         let word_letters = parse_word(word);
-        if (word_letters.length > Math.floor(card_count / 2) || word_letters.length + cards.length > card_count) {
+        if (word_letters.length > Math.floor(card_count / 2) || word_letters.length + cards.length > card_count || word_letters.length + cards.length === card_count - 1) {
             continue;
         }
         words_and_letters.push({word: word, letters: word_letters});
