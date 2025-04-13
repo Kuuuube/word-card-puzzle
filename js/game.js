@@ -247,7 +247,10 @@ function set_date() {
 
 function setup_beat_the_bot_modal() {
     let beat_the_bot_modal = document.querySelector("#beat-the-bot-modal");
-    document.querySelector("#beat-the-bot-button").addEventListener("click", () => { beat_the_bot_modal.style.display = "block"; });
+    document.querySelector("#beat-the-bot-button").addEventListener("click", () => {
+        document.querySelector("#beat-the-bot-words-details").open = false;
+        beat_the_bot_modal.style.display = "block";
+    });
     document.querySelector("#close-beat-the-bot").addEventListener("click", () => { beat_the_bot_modal.style.display = "none"; });
     window.addEventListener("click", (e) => {
         if (e.target == beat_the_bot_modal) {
