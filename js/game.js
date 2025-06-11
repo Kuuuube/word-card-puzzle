@@ -232,17 +232,21 @@ function get_daily_puzzle() {
     return window.location.origin + window.location.pathname;
 }
 
+function epoch_to_utc_date(utc_milliseconds) {
+    let date = new Date(0);
+    date.setUTCMilliseconds(utc_milliseconds);
+    // getMonth is zero indexed
+    return date.getUTCFullYear().toString().padStart(4, "0") + "/" + (date.getUTCMonth() + 1).toString().padStart(2, "0") + "/" + date.getUTCDate().toString().padStart(2, "0")
+}
+
 function set_date() {
     let utc_milliseconds = get_human_seed();
     // Require exact UTC day between 2024/10/3 and 2080/6/1
     if (utc_milliseconds < 1728000000000 || utc_milliseconds > 3484512000000 || utc_milliseconds % MILLISECONDS_PER_DAY !== 0) {
         return;
     }
-    let date = new Date(0);
-    date.setUTCMilliseconds(utc_milliseconds);
-    
-    // getMonth is zero indexed
-    document.querySelector("#daily-date").textContent = "(" + date.getUTCFullYear().toString().padStart(4, "0") + "/" + (date.getUTCMonth() + 1).toString().padStart(2, "0") + "/" + date.getUTCDate().toString().padStart(2, "0") + ")";
+
+    document.querySelector("#daily-date").textContent = "(" + epoch_to_utc_date(utc_milliseconds) + ")";
 }
 
 function setup_beat_the_bot_modal() {
@@ -282,6 +286,8 @@ function setup_fake_button_links() {
 function setup_previous_puzzle_modal() {
     let previous_puzzle_modal = document.querySelector("#previous-puzzle-modal");
     let date_selector = document.querySelector("#previous-puzzle-date");
+    date_selector.max = epoch_to_utc_date(get_human_seed()).replaceAll("/", "-");
+
     document.querySelector("#previous-puzzle").addEventListener("click", () => {
         previous_puzzle_modal.style.display = "block";
     });
