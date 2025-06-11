@@ -279,6 +279,28 @@ function setup_fake_button_links() {
     document.querySelector("#restart-puzzle").href = window.location.href;
 }
 
+function setup_previous_puzzle_modal() {
+    let previous_puzzle_modal = document.querySelector("#previous-puzzle-modal");
+    let date_selector = document.querySelector("#previous-puzzle-date");
+    document.querySelector("#previous-puzzle").addEventListener("click", () => {
+        previous_puzzle_modal.style.display = "block";
+    });
+    document.querySelector("#close-previous-puzzle").addEventListener("click", () => { previous_puzzle_modal.style.display = "none"; });
+    document.querySelector("#previous-puzzle-submit").addEventListener("click", () => {
+        let new_seed = date_selector.valueAsNumber;
+        if (isNaN(new_seed)) { return; }
+        const url_params = new URLSearchParams(window.location.search);
+        url_params.set("seed", new_seed);
+        window.location.href = window.location.origin + window.location.pathname + "?" + url_params.toString();
+    });
+    window.addEventListener("click", (e) => {
+        if (e.target == previous_puzzle_modal) {
+            previous_puzzle_modal.style.display = "none";
+            date_selector.value = "";
+        }
+    });
+}
+
 populate_cards();
 
 document.querySelector("#submit-button").addEventListener("click", submit_cards);
@@ -287,5 +309,6 @@ document.querySelector("#copy-puzzle-link").addEventListener("click", copy_url);
 setup_fake_button_links();
 
 setup_beat_the_bot_modal();
+setup_previous_puzzle_modal();
 
 set_date();

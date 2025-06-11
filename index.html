@@ -11,6 +11,7 @@
     <body>
         <div id="page-wrapper">
             <div id="content-wrapper">
+                <!-- Modals -->
                 <div id="beat-the-bot-modal" class="modal">
                     <div class="modal-content">
                         <span id="close-beat-the-bot" class="close">&times;</span>
@@ -21,14 +22,32 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="previous-puzzle-modal" class="modal">
+                    <div class="modal-content">
+                        <span id="close-previous-puzzle" class="close">&times;</span>
+                        <div class="modal-inner-content">
+                            <h2>Previous Puzzle Date</h2>
+                            <input type="date" id="previous-puzzle-date">
+                            <div class="fake-button" id="previous-puzzle-submit">Submit</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Page -->
                 <div id="header">
                     <div class="header-left">
-                        <div id="copy-puzzle-link" class="fake-button">Copy Puzzle Link</div>
+                        <div class="button-wrapper">
+                            <div class="fake-button"><a id="previous-puzzle">Previous Puzzle</a></div>
+                            <div id="copy-puzzle-link" class="fake-button">Copy Puzzle Link</div>
+                        </div>
                         <div class="button-wrapper">
                             <div class="fake-button"><a id="restart-puzzle">Restart Puzzle</a></div>
                             <div class="fake-button"><a id="new-random-puzzle">New Puzzle</a></div>
                         </div>
-                        <div class="fake-button"><a id="daily-puzzle">Daily Puzzle</a></div>
+                        <div class="button-wrapper">
+                            <div class="fake-button"><a id="daily-puzzle">Daily Puzzle</a></div>
+                        </div>
                     </div>
                     <div class="header-center">
                         <h1 id="header-title">Word Card Puzzle</h1>

@@ -192,6 +192,11 @@ html, body {
     font-weight: bold;
 }
 
+#previous-puzzle-date {
+    margin-bottom: 1em;
+    width: 100%;
+}
+
 /* Mobile Overrides */
 @media (pointer: none), (pointer: coarse), (hover: none) {
     #cards-grid {
