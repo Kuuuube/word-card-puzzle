@@ -288,7 +288,7 @@ function setup_previous_puzzle_modal() {
     document.querySelector("#close-previous-puzzle").addEventListener("click", () => { previous_puzzle_modal.style.display = "none"; });
     document.querySelector("#previous-puzzle-submit").addEventListener("click", () => {
         let new_seed = date_selector.valueAsNumber;
-        if (isNaN(new_seed)) { return; }
+        if (isNaN(new_seed) || new_seed > get_human_seed()) { return; }
         const url_params = new URLSearchParams(window.location.search);
         url_params.set("seed", new_seed);
         window.location.href = window.location.origin + window.location.pathname + "?" + url_params.toString();
