@@ -1,7 +1,7 @@
 import {DICTIONARY} from "./dictionary.js";
 import {get_word_score} from "./score-calculator.js"
 import {get_cards, is_puzzle_still_solvable} from "./puzzle-generator.js";
-import {get_human_seed, get_random_seed, MILLISECONDS_PER_DAY} from "./math.js";
+import {get_human_seed, get_random_seed, get_epoch_day, MILLISECONDS_PER_DAY} from "./math.js";
 
 const VISIBLE_CARD_COUNT = 8;
 const ASSETS_BASE_PATH = "./assets/";
@@ -286,7 +286,8 @@ function setup_fake_button_links() {
 function setup_previous_puzzle_modal() {
     let previous_puzzle_modal = document.querySelector("#previous-puzzle-modal");
     let date_selector = document.querySelector("#previous-puzzle-date");
-    date_selector.max = epoch_to_utc_date(get_human_seed()).replaceAll("/", "-");
+    let max_seed = get_epoch_day();
+    date_selector.max = epoch_to_utc_date(max_seed).replaceAll("/", "-");
 
     document.querySelector("#previous-puzzle").addEventListener("click", () => {
         previous_puzzle_modal.style.display = "block";
@@ -294,7 +295,7 @@ function setup_previous_puzzle_modal() {
     document.querySelector("#close-previous-puzzle").addEventListener("click", () => { previous_puzzle_modal.style.display = "none"; });
     document.querySelector("#previous-puzzle-submit").addEventListener("click", () => {
         let new_seed = date_selector.valueAsNumber;
-        if (isNaN(new_seed) || new_seed > get_human_seed()) { return; }
+        if (isNaN(new_seed)) { return; }
         const url_params = new URLSearchParams(window.location.search);
         url_params.set("seed", new_seed);
         window.location.href = window.location.origin + window.location.pathname + "?" + url_params.toString();

@@ -18,14 +18,18 @@ function hash_code(s) {
     return h;
 }
 
+export function get_epoch_day() {
+    return Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
+}
+
 export function get_human_seed() {
     const url_params = new URLSearchParams(window.location.search);
     const url_seed = url_params.get("seed");
     if (url_seed) {
         return url_seed;
     }
-    const epoch_day = Math.floor(Date.now() / MILLISECONDS_PER_DAY) * MILLISECONDS_PER_DAY;
-    return epoch_day.toString();
+
+    return get_epoch_day().toString();
 }
 
 function get_seed() {
